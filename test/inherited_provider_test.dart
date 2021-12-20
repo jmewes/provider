@@ -2443,9 +2443,9 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
 
   testWidgets('StateError is thrown when exception occurs in create',
       (tester) async {
-    const expected =
-        'Tried to read a provider that threw during the creation of its value.\n'
-        'The exception occurred during the creation of type String.';
+    const expected = '''
+Tried to read a provider that threw during the creation of its value.
+The exception occurred during the creation of type String.''';
     final onError = FlutterError.onError;
     final flutterErrors = <FlutterErrorDetails>[];
     FlutterError.onError = flutterErrors.add;
