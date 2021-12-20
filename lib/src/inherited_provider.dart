@@ -727,7 +727,11 @@ class _CreateInheritedProviderState<T>
           }());
           _value = delegate.create!(element!);
           _didSucceedInit = true;
-        } finally {
+        } catch (e, stackTrace) {
+
+          rethrow;
+        }
+        finally {
           assert(() {
             debugIsInInheritedProviderCreate =
                 _debugPreviousIsInInheritedProviderCreate!;
