@@ -1231,7 +1231,7 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
     );
 
     testWidgets(
-      'fails if initialValueBuilder calls inheritFromElement/inheritFromWiggetOfExactType',
+      'fails if initialValueBuilder calls inheritFromElement/inheritFromWidgetOfExactType',
       (tester) async {
         await tester.pumpWidget(
           InheritedProvider<int>.value(
@@ -2431,7 +2431,11 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
         isA<FlutterErrorDetails>().having(
           (e) => e.exception,
           'exception',
-          isA<StateError>().having((s) => s.message, 'message', expected),
+          isA<StateError>().having(
+            (s) => s.message,
+            'message',
+            startsWith(expected),
+          ),
         ),
       ),
     );
@@ -2462,7 +2466,11 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
         isA<FlutterErrorDetails>().having(
           (e) => e.exception,
           'exception',
-          isA<StateError>().having((s) => s.message, 'message', expected),
+          isA<StateError>().having(
+            (s) => s.message,
+            'message',
+            startsWith(expected),
+          ),
         ),
       ),
     );

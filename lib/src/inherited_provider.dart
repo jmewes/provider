@@ -700,7 +700,8 @@ class _CreateInheritedProviderState<T>
     if (_didInitValue && !_didSucceedInit) {
       throw StateError(
         'Tried to read a provider that threw during the creation of its value.\n'
-        'The exception occurred during the creation of type $T.',
+        'The exception occurred during the creation of type $T.\n'
+        '_initFailure?.message'
       );
     }
     bool? _debugPreviousIsInInheritedProviderCreate;
