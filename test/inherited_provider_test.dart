@@ -2459,7 +2459,14 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
 
     final expected = '''
 Tried to read a provider that threw during the creation of its value.
-The exception occurred during the creation of type String.''';
+The exception occurred during the creation of type String.
+
+══╡ EXCEPTION CAUGHT BY PROVIDER ╞═══════════════════════════════
+The following _Exception was thrown:
+Exception: oops
+
+When the exception was thrown, this was the stack:
+#0''';
 
     for (var flutterError in flutterErrors) {
       if (flutterError.exception.runtimeType == StateError) {
