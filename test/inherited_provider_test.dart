@@ -2460,6 +2460,8 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
 
     FlutterError.onError = onError;
 
+    print(flutterErrors.first);
+
     expect(
       flutterErrors,
       contains(

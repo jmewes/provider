@@ -701,8 +701,8 @@ class _CreateInheritedProviderState<T>
     if (_didInitValue && !_didSucceedInit) {
       throw StateError(
           'Tried to read a provider that threw during the creation of its value.\n'
-          'The exception occurred during the creation of type $T.\n'
-          '_initFailure?.message');
+          'The exception occurred during the creation of type $T.\n\n'
+          '${_initFailure?.toString()}');
     }
     bool? _debugPreviousIsInInheritedProviderCreate;
     bool? _debugPreviousIsInInheritedProviderUpdate;
@@ -728,7 +728,11 @@ class _CreateInheritedProviderState<T>
           _value = delegate.create!(element!);
           _didSucceedInit = true;
         } catch (e, stackTrace) {
-          _initFailure = FlutterErrorDetails(exception: e, stack: stackTrace);
+          _initFailure = FlutterErrorDetails(
+            library: 'Provider',
+            exception: e,
+            stack: stackTrace,
+          );
           rethrow;
         } finally {
           assert(() {
