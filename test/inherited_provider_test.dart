@@ -2457,7 +2457,18 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
 
     FlutterError.onError = onError;
 
-    print(flutterErrors.first);
+    final expected = '''
+Tried to read a provider that threw during the creation of its value.
+The exception occurred during the creation of type String.''';
+
+    for (var flutterError in flutterErrors) {
+      if (flutterError.exception.runtimeType == StateError) {
+        var s = flutterError.exception as StateError;
+        print('-------###------> MESSAGES - START <-------###------');
+        print(s.message.startsWith(expected));
+        print('-------###------> MESSAGES - END <-------###------');
+      }
+    }
 
     expect(
       flutterErrors,
@@ -2468,9 +2479,7 @@ DeferredInheritedProvider<int, int>(controller: 42, value: 24)'''),
           isA<StateError>().having(
             (s) => s.message,
             'message',
-            startsWith('''
-Tried to read a provider that threw during the creation of its value.
-The exception occurred during the creation of type String.'''),
+            startsWith(expected),
           ),
         ),
       ),
